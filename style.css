@@ -120,6 +120,9 @@ a {
 }
 .tile3 p {
     width: 55%;
+    text-align: center; /* Centers the text */
+    margin-left: auto; /* Center the paragraph within the container */
+    margin-right: auto; /* Center the paragraph within the container */
 }
 
 .tile4 {
@@ -138,6 +141,9 @@ a {
 
 .tile4 p {
     width: 55%;
+    text-align: center; /* Centers the text */
+    margin-left: auto; /* Center the paragraph within the container */
+    margin-right: auto; /* Center the paragraph within the container */
 }
 
 .tile4:hover {
@@ -185,3 +191,10 @@ a {
     margin: 6px 8px;
 }
 
+footer {
+    margin-top: 100px; 
+    background-color: #f1f1f1; 
+    padding: 8px; 
+    text-align: center; 
+    border-radius: 20px; 
+}
