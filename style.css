@@ -1,200 +1,360 @@
+/* Reset basic styling */
 body {
     margin: 0;
     padding: 0;
-    background-image: url('BoostVision.png');
-    color: rgb(240,240,240);
-    display:flex;
+    display: flex;
     align-items: center;
     flex-direction: column;
-    width: 100vw;
-    font-family: Verdana, Tahoma, sans-serif
+    font-family: Verdana, Tahoma, sans-serif;
+    color: rgb(250, 0, 175);
+    width: 100vw; /* Viewport width */
+    min-height: 100vh; /* Full viewport height */
+    
+    /* Use a background image that covers the screen */
+    background-image: url('bg.jpg');
+    background-size: cover; /* Ensures the image covers the screen */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents tiling of the image */
 }
 
-header {
-    width:95%;
-    max-width: 788px;
-    display: flex;
-    justify-content: flex-end;
-    padding: 12px;
-    margin-top: 15px;
-}
+/* Text and layout responsiveness */
 
-.share-button {
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-    background-color: rgb(240,240,240);
-}
-
-.share-button svg {
-    margin-left:8px;
-    margin-top: 4px;
-    margin-right: 6px;
-    color: rgb(0, 0, 0);
-}
 
 .container {
-    width: 91%;
-    max-width: 680px;
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    border: 2px solid rgb(250, 0, 175); /* Creates the border */
+    padding: 20px; /* Adds space inside the box */
+    border-radius: 20px; /* Rounds the corners slightly */
+    background-color: #0a94e4; /* Light background color */
+    max-width: 800px; /* Sets a max width for the box */
+    width: 400px;
+    margin: 4px auto; /* Centers the box horizontally */
+    box-shadow: 0px 0px 50px rgb(250, 0, 175); /* Adds a subtle shadow */
+    text-align: center; /* Centers the text inside the container */
 }
 
-h1 {
-    font-size: 20px;
-    margin-bottom: 30px;
-}
-
-a {
+.container-vouches a {
+    display: block;
+    padding: 10px;
+    background-color: #007bff;
+    color: rgb(250, 0, 175);
+    text-align: center;
     text-decoration: none;
-    color: rgb(240,240,240);
+    border-radius: 5px;
+    margin: 10px 0;
+    transition: background-color 0.3s ease;
 }
 
-.tile {
-    margin:7px;
-    width:100%;
-    background-color: rgb(37,37,37);
-    border-radius: 17px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.tile:hover {
-    transition: cubic-bezier(.07, 1.41, .82, 1.41) 0.2s;
-    transform: scale(1.02);
-
-}
-
-.tile2 {
-    margin:5px;
-    width:50%;
-    height: 50px;
-    background-color: rgb(156, 16, 16);
-    border-radius: 17px;
-    display: flex;
-    justify-content: space-between;
-}
-.tile2 .icon svg {
-    width: 35px; 
-    height: 35px;
-}
-
-.tile2 .tile-share-button {
-    visibility: hidden; 
-    width: 35;           
-    height: 0;          
-}
-
-.tile2:hover {
-    transition: cubic-bezier(.07, 1.41, .82, 1.41) 0.2s;
-    transform: scale(1.02);
-
-}
-
-.tile3 {
-    margin:5px;
-    width:80%;
-    height: 50px;
-    background-color: rgb(156, 16, 16);
-    border-radius: 17px;
-    display: flex;
-    justify-content: space-between;
-}
-.tile3 .icon svg {
-    width: 35px; 
-    height: 35px;
-}
-
-.tile3 .tile-share-button {
-    visibility: hidden; 
-    width: 35;           
-    height: 0;          
-}
-
-.tile3:hover {
-    transition: cubic-bezier(.07, 1.41, .82, 1.41) 0.2s;
-    transform: scale(1.02);
-
-}
-.tile3 p {
-    width: 55%;
-    text-align: center; /* Centers the text */
-    margin-left: auto; /* Center the paragraph within the container */
-    margin-right: auto; /* Center the paragraph within the container */
-}
-
-.tile4 {
-    margin:5px;
-    width:50%;
-    height: 50px;
-    background-color: rgb(37,37,37);
-    border-radius: 17px;
-    display: flex;
-    justify-content: space-between;
-}
-.tile4 .icon svg {
-    width: 35px; 
-    height: 35px;
-}
-
-.tile4 p {
-    width: 55%;
-    text-align: center; /* Centers the text */
-    margin-left: auto; /* Center the paragraph within the container */
-    margin-right: auto; /* Center the paragraph within the container */
-}
-
-.tile4:hover {
-    transition: cubic-bezier(.07, 1.41, .82, 1.41) 0.2s;
-    transform: scale(1.02);
-
+.container-vouches a:hover {
+    background-color: #0056b3;
 }
 
 
-
-
-.share-button svg {
-    margin-left:6px;
-    margin-top: 5px;
+/* Responsive text sizes */
+h1, p {
+    text-align: center;
+    margin: 0.5rem 0;
 }
 
-
-.tile-share-button {
-    margin: 8px;
-    width:40px;
-    height:40px;
-    border-radius: 20px;
-    background-color: rgb(52,52,52);
+/* Example responsive font sizes */
+h1 {
+    font-size: calc(1.5rem + 1vw); /* Adjusts size based on viewport width */
 }
 
-.tile-share-button svg {
-    margin-left:12px;
-    margin-top: 10px;
+p {
+    font-size: calc(1rem + 0.5vw); /* Slightly smaller scaling */
+}
+
+/* Media query for small screens (e.g., smartphones) */
+@media (max-width: 600px) {
+    body {
+        background-size: cover; /* Ensures the image adjusts for smaller screens */
+    }
+    h1 {
+        font-size: 1.5rem; /* Specific adjustment for very small screens */
+    }
+    p {
+        font-size: 1rem;
+    }
+}
+
+/* Additional layout for large screens */
+@media (min-width: 1200px) {
+    .container {
+        padding: 2rem; /* Extra padding on large screens */
+    }
 }
 
 .image-container {
-    height: 96px;
-    width: 96px;
-    border-radius: 48px;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0; /* Adds spacing around the image */
 }
 
 .image-container img {
+    width: 150px; /* Adjust size as needed */
+    height: 150px; /* Ensure it’s the same as width for a perfect circle */
+    border-radius: 50%; /* Makes the image round */
+    object-fit: cover; /* Ensures the image covers the area without stretching */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: adds a subtle shadow */
+}
+
+.container h3 {
+    text-align: center;
+    margin-top: 0.5rem; /* Adjust spacing as needed */
+}
+.container h5 {
+    text-align: center;
+    margin-top: 0.5rem; /* Adjust spacing as needed */
+}
+
+/* Typing Animation for h3 */
+.typing-text-h3 {
+    text-align: center;
+    width: fit-content;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid rgb(153, 153, 153); /* Blinking cursor effect */
+    animation: typing-h3 3s steps(30, end), blink 0.6s step-end infinite alternate;
+    margin: 0 auto;
+}
+
+/* Typing Animation for h5 */
+.typing-text-h5 {
+    text-align: center;
+    width: fit-content;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid rgb(153, 153, 153); /* Blinking cursor effect */
+    animation: typing-h5 3s steps(30, end), blink 0.6s step-end infinite alternate;
+    margin: 0 auto;
+}
+
+/* Typing animation for h3 */
+@keyframes typing-h3 {
+    from {
+        width: 0ch;
+    }
+    to {
+        width: 8ch; /* Adjust this value to fit the number of characters in your h3 text */
+    }
+}
+
+/* Typing animation for h5 */
+@keyframes typing-h5 {
+    from {
+        width: 0ch;
+    }
+    to {
+        width: 19ch; /* Adjust this value to fit the number of characters in your h5 text */
+    }
+}
+
+/* Blinking cursor animation */
+@keyframes blink {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: rgb(250, 0, 175);
+    }
+}
+
+
+
+#box-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.main-box {
+    background-color: #b3b3b3; /* Temporarily change color for visibility */
+    border: 2px solid rgb(250, 0, 175); /* Add a border to make it stand out */
+    padding: 1rem;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+
+.box h2 {
+    font-size: 1.2rem;
+    color: rgb(250, 0, 175);
+}
+
+.box p {
+    font-size: 1rem;
+    color: rgb(250, 0, 175);
+}
+
+#links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.link-button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.link-button svg {
+    width: 40px;
+    height: 40px;
+    transition: fill 0.3s;
+}
+
+.link-button:hover svg path,
+.link-button:hover svg ellipse {
+    fill: rgb(250, 0, 175);
+}
+
+
+
+
+/* Position the volume and play buttons at the top of the main-box */
+.main-box {
+    display: flex;
+    background-color: #b3b3b3; /* Temporarily change color for visibility */
+    border: 2px solid rgb(250, 0, 175); /* Add a border to make it stand out */
+    padding: 1rem;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    justify-content: flex-end; /* Align items at the bottom */
+    height: 100%; 
+}
+
+/* Use flexbox to position the buttons at the top */
+.main-box .buttons-container {
+    display: flex;
+    justify-content: space-between; /* Positions buttons on either side */
+    align-items: center; /* Ensures buttons are vertically aligned */
+    position: absolute;
+    top: 10px; /* Adjust the top positioning */
+    left: 0;
+    right: 0;
+    padding: 0 10px; /* Optional: Add some padding */
+}
+
+/* Volume button styles */
+.volume-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* Play button styles */
+.play-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* Volume and Play button SVG styling */
+.volume-btn svg, .play-btn svg {
+    width: 40px;
+    height: 40px;
+    transition: stroke 0.3s;
+}
+
+/* Hover effect for the buttons */
+.volume-btn:hover svg path,
+.volume-btn:hover svg ellipse {
+    stroke: rgb(250, 0, 175);
+}
+
+.play-btn:hover svg path,
+.play-btn:hover svg ellipse {
+    stroke: rgb(250, 0, 175);
+}
+
+
+.controls {
+    border: 2px solid rgb(250, 0, 175); /* Creates the border */
+    padding: 20px; /* Adds space inside the box */
+    border-radius: 20px; /* Rounds the corners slightly */
+    background-color: #0a94e4; /* Light background color */
+    max-width: 800px; /* Sets a max width for the box */
+    width: 420px;
+    margin:50px auto; /* Centers the box horizontally */
+    box-shadow: 0px 0px 50px rgb(250, 0, 175); /* Adds a subtle shadow */
+    text-align: center; /* Centers the text inside the container */
+
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 250px; /* Adjust width as needed */
+    padding: 10px;
+}
+
+.controls button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.controls p {
+    margin: 0;
+    font-size: 16px; /* Adjust text size as needed */
+    text-align: center;
+}
+
+
+
+
+
+.flip-box {
+    background-color: transparent;
+    width: 300px;
+    height: 200px;
+    perspective: 1000px;
+    margin: 20px auto;
+}
+
+.flip-box-inner {
+    position: relative;
+    width: 100%;
     height: 100%;
+    text-align: center;
+    transition: transform 1.2s;
+    transform-style: preserve-3d; /* Ensure 3D transform */
+    box-shadow: 0px 0px 50px rgb(250, 0, 175);
 }
 
-.icon {
-    width:44px;
-    height:44px;
-    margin: 6px 8px;
+.flip-box:hover .flip-box-inner {
+    transform: rotateY(180deg);
 }
 
-footer {
-    margin-top: 100px; 
-    background-color: #f1f1f1; 
-    padding: 8px; 
-    text-align: center; 
-    border-radius: 20px; 
+.flip-box-front, .flip-box-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: rgb(250, 0, 175);
+    display: flex; /* Center content if needed */
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden; /* Ensures only one side is visible */
+    border: 2px solid rgb(250, 0, 175);
 }
+
+.flip-box-front {
+    background-color: #0a94e4;
+}
+
+.flip-box-back {
+    background-color: #0a94e4;
+    transform: rotateY(180deg);
+}
+
