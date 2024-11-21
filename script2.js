@@ -1,12 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Reference to the button and the input field
     const addKeyBtn = document.getElementById("add-key-btn");
     const newKeyInput = document.getElementById("new-key");
     const keyList = document.getElementById("key-list");
 
     // Function to validate the key format
     function validateKey(key) {
-        // Regular expression to check if key format is correct
         const keyFormat = /^\.gg\/boostvision-[A-Za-z0-9]+-[A-Za-z0-9]+ \| \d+ \| [A-Za-z]+ \| \d{2}\/\d{2}\/\d{2}$/;
         return key.match(keyFormat);
     }
@@ -14,9 +12,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // Function to add the new key to the list
     function addKey() {
         const newKey = newKeyInput.value.trim();
-
-        // Log the key to ensure we get the input value
-        console.log("Key entered:", newKey);
 
         if (newKey === "") {
             alert("Please enter a key.");
@@ -31,6 +26,9 @@ document.addEventListener("DOMContentLoaded", function() {
             // Append the new key to the key list
             keyList.appendChild(newKeyElement);
 
+            // Save the key in local storage
+            saveKeysToLocalStorage();
+
             // Clear the input field
             newKeyInput.value = "";
         } else {
@@ -38,9 +36,39 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    // Function to save keys to local storage
+    function saveKeysToLocalStorage() {
+        const keys = [];
+        const keyElements = keyList.getElementsByTagName("p");
+
+        // Loop through all the key elements and store them in the keys array
+        for (let i = 0; i < keyElements.length; i++) {
+            keys.push(keyElements[i].textContent);
+        }
+
+        // Save the keys array to local storage
+        localStorage.setItem("keys", JSON.stringify(keys));
+    }
+
+    // Function to load keys from local storage
+    function loadKeysFromLocalStorage() {
+        const storedKeys = JSON.parse(localStorage.getItem("keys"));
+
+        // If there are stored keys, display them
+        if (storedKeys && storedKeys.length > 0) {
+            storedKeys.forEach(key => {
+                const keyElement = document.createElement("p");
+                keyElement.textContent = key;
+                keyList.appendChild(keyElement);
+            });
+        }
+    }
+
     // Add event listener to the "Add Key" button
     addKeyBtn.addEventListener("click", function() {
-        console.log("Add Key button clicked!");  // Log when the button is clicked
-        addKey();  // Call the addKey function to add the key
+        addKey();
     });
+
+    // Load keys from local storage when the page loads
+    loadKeysFromLocalStorage();
 });
