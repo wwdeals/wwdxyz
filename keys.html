@@ -4,30 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slot Bot Key List</title>
-   
-    <script src="script2.js"></script>  <!-- External JS for functionality -->
+    <link rel="stylesheet" href="style2.css">
 </head>
 <body>
     <header>
         <h1>Keys</h1>
-    
-    <button id="add-key-btn">Add New Key</button>
-
-    <!-- Form to input new key -->
-    <div id="add-key-form" style="display: none;">
-        <input type="text" id="new-key" placeholder="Enter key in the format: .gg/boostvision-XXXX-XXXX | User ID | Lifetime | Date" />
-        <button onclick="saveKey()">Save Key</button>
-    </div>
     </header>
-    
-  
-    <div id="key-list">
-        <!-- Initially populated keys will appear here -->
-        <p>.gg/boostvision-dOzMtXpin3-FLvCGdi2CQNXXFM | 1170503909895311370 | Lifetime | 21/11/24</p>
-        <p>.gg/boostvision-LPgQlZVhzB-iarIwn22dUaFUuX | 1170503909895311370 | Lifetime | 21/11/24</p>
-        <p>.gg/boostvision-3eAURcQ4te-d996JR6pimVUbPX | 1170503909895311370 | Lifetime | 21/11/24</p>
+
+    <div id="add-key-container">
+        <input type="text" id="new-key" placeholder="Enter new key" />
+        <button id="add-key-btn">Add Key</button>
     </div>
 
+    <h3>Key | User | Type | Date</h3>
+    <div id="key-list">
+        <!-- New keys will be appended here -->
+    </div>
 
+    <script src="script.js"></script>
 </body>
 </html>
